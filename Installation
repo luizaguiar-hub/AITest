@@ -1,0 +1,75 @@
+# User Guide: How to Use the Government GitHub Analysis System
+
+1. Set Up Your Environment
+Before using the system, ensure that you're running the notebook in a Google Colab environment or
+a local Jupyter Notebook with internet access. You must have a .env file with the following
+environment variables properly set:
+ini
+
+
+CopyEdit
+
+ENDPOINT=<your Azure OpenAI endpoint URL>
+DEPLOYMENT_NAME=<your deployment name, e.g., gpt-4o>
+SUBSCRIPTION_KEY=<your Azure OpenAI subscription key>
+GITHUB_TOKEN=<your GitHub personal access token>
+Make sure the .env file is located in the same directory as your notebook, and that it is loaded
+using load_dotenv().
+
+
+2. Fetch GitHub Government Accounts
+
+The system will automatically fetch a YAML file from GitHub that lists hundreds of official
+government GitHub accounts worldwide. This file is maintained by GitHub itself and provides the
+foundation for analysis.
+You can choose to:
+• Analyze all accounts (default: off), or
+• Filter by selected high-impact organizations like GSA, alphagov, or opengovsg by
+setting USE_FILTERED_ACCOUNTS = True.
+
+
+3. Extract Repository Metadata
+
+The system then fetches:
+• Repository names
+• Descriptions
+• Number of stars and forks
+• Main programming language
+• README file contents (truncated for quick processing)
+This data is stored and prepared for AI-powered analysis.
+
+
+4. Run AI-Powered Summarization and Sentiment Analysis
+For each README file:
+
+• A summary is generated using GPT-4o, condensing the project’s main goal.
+• A sentiment score (positive, neutral, or negative) is derived to understand how clearly and
+confidently the project is presented.
+This is done using Azure’s OpenAI service through LangChain’s AzureChatOpenAI
+integration.
+
+
+5. Export Analysis Results
+All results are saved to the following files:
+
+• readme_analysis.csv: Summary and sentiment per project
+• readme_analysis.json: Same content in JSON format
+• sentiment_by_country.csv: Aggregated sentiment by country
+• sentiment_by_org.csv: Aggregated sentiment by organization
+You can find these files in your Colab file browser (Files tab on the left). Right-click and
+download as needed.
+Expected Outcomes of the Analysis
+This system is designed to support strategic decision-making about public-sector technology
+investments. Here’s what you can expect:
+• Summarized Project Overviews: Concise summaries of each open-source government
+project to help non-technical reviewers quickly grasp each project’s purpose.
+• Sentiment Evaluation: Tone-based insights that help evaluate how professional,
+enthusiastic, and well-articulated each README is—an indirect measure of project quality
+and clarity.
+• Trend Analysis: Identify which countries or organizations are producing the most positively
+received projects, allowing policymakers or investors to focus on regions of innovation.
+• Opportunity Identification: The system helps highlight standout projects (like Singapore’s
+AskGov) that are worth funding, replicating, or integrating into broader civic technology
+initiatives.
+• Data-Driven Insights: Rather than relying on subjective judgment, the system offers AI-
+supported, reproducible insights based on actual project content and presentation.
