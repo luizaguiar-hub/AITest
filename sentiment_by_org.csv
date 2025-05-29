@@ -1,0 +1,4 @@
+org,The sentiment of the text is **neutral**. It is a factual statement without any clear positive or negative emotion.,The sentiment of the text is **neutral**. It is informative and does not convey any positive or negative emotion.,"The sentiment of the text is **positive**, as it highlights an improvement in AI-driven content summarization, which suggests progress and advancement.",The sentiment of the text is **positive**.
+OrgA,0,1,0,1
+OrgB,0,0,1,0
+OrgC,1,0,0,0
